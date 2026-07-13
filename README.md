@@ -6,7 +6,7 @@ O objetivo deste projeto é praticar desenvolvimento backend, criação de rotas
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+##  Tecnologias utilizadas
 
 - Node.js
 - TypeScript
