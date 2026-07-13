@@ -1,4 +1,4 @@
-#  Task Manager API - Node.js + TypeScript
+#  Task Manager API - Node.js e TypeScript
 
 API REST para gerenciamento de tarefas desenvolvida com **Node.js** e **TypeScript**.
 
