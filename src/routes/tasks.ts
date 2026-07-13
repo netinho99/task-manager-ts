@@ -1,0 +1,47 @@
+import { Router } from "express";
+import { Task } from "../models/Task.js";
+
+const router = Router();
+
+let tasks: Task[] = [
+    {
+        id: 1,
+        title: "Aprender TypeScript",
+        completed: false
+    }
+];
+
+
+router.get("/", (req, res) => {
+    res.json(tasks);
+});
+
+
+router.post("/", (req, res) => {
+
+    const newTask: Task = {
+        id: tasks.length + 1,
+        title: req.body.title,
+        completed: false
+    };
+
+    tasks.push(newTask);
+
+    res.status(201).json(newTask);
+});
+
+
+router.delete("/:id", (req,res)=>{
+
+    const id = Number(req.params.id);
+
+    tasks = tasks.filter(task => task.id !== id);
+
+    res.json({
+        message:"Tarefa removida"
+    });
+
+});
+
+
+export default router;
