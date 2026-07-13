@@ -9,6 +9,11 @@ let tasks: Task[] = [
         title: "Minha primeira rota",
         completed: false,
     },
+      {
+        id: 2,
+        title: "Minha segunda rota",
+        completed: false,
+    }
 ];
 
 router.get("/", (_req: Request, res: Response) => {
@@ -75,6 +80,22 @@ router.delete("/:id", (req: Request, res: Response) => {
     return res.status(200).json({
         message: "Tarefa removida com sucesso.",
     });
+});
+
+router.get("/:id", (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const task = tasks.find(task => task.id === id);
+
+    if (!task) {
+        return res.status(404).json({
+            message: "Tarefa não encontrada."
+        });
+    }
+
+    return res.status(200).json(task);
+
 });
 
 export default router;
