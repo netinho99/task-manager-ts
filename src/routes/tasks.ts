@@ -9,9 +9,14 @@ let tasks: Task[] = [
         title: "Minha primeira tarefa",
         completed: false,
     },
-      {
+    {
         id: 2,
         title: "Minha segunda tarefa",
+        completed: false,
+    },
+    {
+        id: 3,
+        title: "Minha terceira tarefa",
         completed: false,
     }
 ];
