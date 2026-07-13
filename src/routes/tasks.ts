@@ -6,12 +6,12 @@ const router = Router();
 let tasks: Task[] = [
     {
         id: 1,
-        title: "Minha primeira rota",
+        title: "Minha primeira tarefa",
         completed: false,
     },
       {
         id: 2,
-        title: "Minha segunda rota",
+        title: "Minha segunda tarefa",
         completed: false,
     }
 ];
