@@ -8,5 +8,5 @@ app.use(express.json());
 app.use("/tasks", taskRoutes);
 
 app.listen(3000, () => {
-    console.log("🚀 API rodando na porta 3000");
+    console.log("Essa bosta tá rodando é tudo que precisa saber, não mexa no código.");
 });
