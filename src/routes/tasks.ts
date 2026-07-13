@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { Task } from "../models/Task.js";
 
 const router = Router();
@@ -6,42 +6,75 @@ const router = Router();
 let tasks: Task[] = [
     {
         id: 1,
-        title: "Aprender TypeScript",
-        completed: false
-    }
+        title: "Minha primeira rota",
+        completed: false,
+    },
 ];
 
-
-router.get("/", (req, res) => {
-    res.json(tasks);
+router.get("/", (_req: Request, res: Response) => {
+    return res.status(200).json(tasks);
 });
 
+router.post("/", (req: Request, res: Response) => {
+    const { title } = req.body;
 
-router.post("/", (req, res) => {
+    if (!title || typeof title !== "string") {
+        return res.status(400).json({
+            message: "O campo 'title' é obrigatório.",
+        });
+    }
 
     const newTask: Task = {
         id: tasks.length + 1,
-        title: req.body.title,
-        completed: false
+        title,
+        completed: false,
     };
 
     tasks.push(newTask);
 
-    res.status(201).json(newTask);
+    return res.status(201).json(newTask);
 });
 
-
-router.delete("/:id", (req,res)=>{
-
+router.put("/:id", (req: Request, res: Response) => {
     const id = Number(req.params.id);
 
-    tasks = tasks.filter(task => task.id !== id);
+    const task = tasks.find((task) => task.id === id);
 
-    res.json({
-        message:"Tarefa removida"
-    });
+    if (!task) {
+        return res.status(404).json({
+            message: "Tarefa não encontrada.",
+        });
+    }
 
+    const { title, completed } = req.body;
+
+    if (title !== undefined) {
+        task.title = title;
+    }
+
+    if (completed !== undefined) {
+        task.completed = completed;
+    }
+
+    return res.status(200).json(task);
 });
 
+router.delete("/:id", (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    const taskExists = tasks.some((task) => task.id === id);
+
+    if (!taskExists) {
+        return res.status(404).json({
+            message: "Tarefa não encontrada.",
+        });
+    }
+
+    tasks = tasks.filter((task) => task.id !== id);
+
+    return res.status(200).json({
+        message: "Tarefa removida com sucesso.",
+    });
+});
 
 export default router;
