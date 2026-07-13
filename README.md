@@ -1,155 +1,109 @@
-#  Task Manager API - Node.js e TypeScript
-
-API REST para gerenciamento de tarefas desenvolvida com **Node.js** e **TypeScript**.
-
-O objetivo deste projeto é praticar desenvolvimento backend, criação de rotas HTTP, tipagem estática e organização de código utilizando boas práticas.
-
----
-
-##  Tecnologias utilizadas
-
-- Node.js
-- TypeScript
-- Express.js
-- TSX (execução do TypeScript em desenvolvimento)
-- npm
-
----
-
-##  Estrutura do projeto
-
-```
+Task Manager API - Node.js, TypeScript e SQLite
+API REST para gerenciamento de tarefas desenvolvida com Node.js, TypeScript, Express e SQLite.
+Este projeto foi criado com o objetivo de praticar desenvolvimento backend, aplicando conceitos de APIs REST, organização de código, tipagem estática com TypeScript, integração com banco de dados SQLite e versionamento utilizando Git e GitHub.
+Tecnologias utilizadas
+Node.js
+TypeScript
+Express.js
+SQLite
+better-sqlite3
+TSX
+npm
+Git
+GitHub
+Estrutura do projeto
 task-manager-ts/
 │
 ├── src/
-│   ├── index.ts          # Inicialização da API
+│   ├── database/
+│   │   └── database.ts      # Configuração do banco SQLite
 │   │
 │   ├── models/
-│   │   └── Task.ts       # Interface da tarefa
+│   │   └── Task.ts          # Interface Task
 │   │
-│   └── routes/
-│       └── tasks.ts      # Rotas da API
+│   ├── routes/
+│   │   └── tasks.ts         # Rotas da API
+│   │
+│   └── index.ts             # Inicialização do servidor
 │
+├── tasks.db                 # Banco de dados SQLite
 ├── package.json
 ├── tsconfig.json
+├── .gitignore
 └── README.md
-```
-
----
-
-##  Instalação
-
-Clone o projeto:
-
-```bash
+Instalação
+Clone o repositório:
 git clone https://github.com/netinho99/task-manager-ts.git
-```
-
-Entre na pasta:
-
-```bash
+Entre na pasta do projeto:
 cd task-manager-ts
-```
-
 Instale as dependências:
-
-```bash
 npm install
-```
-
----
-
-##  Executando o projeto
-
+Executando a aplicação
 Modo desenvolvimento:
-
-```bash
 npm run dev
-```
-
 A API será iniciada em:
-
-```
 http://localhost:3000
-```
-
----
-
-#  Endpoints
-
-## Listar tarefas
-
-```
+Endpoints disponíveis
+Listar todas as tarefas
 GET /tasks
-```
-
 Resposta:
-
-```json
 [
   {
     "id": 1,
-    "title": "Aprender TypeScript",
+    "title": "Minha primeira tarefa",
     "completed": false
   }
 ]
-```
-
----
-
-## Criar tarefa
-
-```
+Criar uma tarefa
 POST /tasks
-```
-
 Body:
-
-```json
 {
-  "title": "Criar projeto para o GitHub"
+  "title": "Estudar Node.js"
 }
-```
-
 Resposta:
-
-```json
 {
   "id": 2,
-  "title": "Criar projeto para o GitHub",
+  "title": "Estudar Node.js",
   "completed": false
 }
-```
-
----
-
-## Remover tarefa
-
-```
+Atualizar uma tarefa
+PUT /tasks/:id
+Body:
+{
+  "title": "Estudar TypeScript",
+  "completed": true
+}
+Resposta:
+{
+  "id": 1,
+  "title": "Estudar TypeScript",
+  "completed": true
+}
+Remover uma tarefa
 DELETE /tasks/:id
-```
-
 Exemplo:
-
-```
 DELETE /tasks/1
-```
-
----
-
-##  Próximas melhorias
-
-- [ ] Banco de dados SQLite/PostgreSQL
-- [ ] Autenticação com JWT
-- [ ] Validação de dados
-- [ ] Arquitetura MVC
-- [ ] Documentação com Swagger
-- [ ] Deploy em ambiente cloud
-
----
-
-##  Autor
-
-**Netinho99**
-
-Projeto desenvolvido para estudos de Backend com Node.js e TypeScript.
+Resposta:
+{
+  "message": "Tarefa removida com sucesso."
+}
+Funcionalidades
+Listagem de tarefas
+Cadastro de tarefas
+Atualização de tarefas
+Exclusão de tarefas
+Persistência dos dados utilizando SQLite
+API REST desenvolvida com Express
+Tipagem estática utilizando TypeScript
+Próximas melhorias
+Implementar Controllers e Services
+Validação de dados com Zod
+Tratamento centralizado de erros
+Documentação da API com Swagger
+Testes automatizados
+Autenticação com JWT
+Docker
+Deploy em ambiente cloud
+Autor
+Netinho99
+Projeto desenvolvido para estudos de desenvolvimento backend utilizando Node.js, TypeScript, Express e SQLite, com foco na prática de APIs REST, organização de código e integração com banco de dados.
